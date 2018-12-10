@@ -1,0 +1,89 @@
+
+    <div class="col-md-10" *ngIf="showQuestionsList">
+      <h2 class="jumbotron col-md-10 top" style="background-color:indianred; text-align: center"><span style="color: transparent; -webkit-text-stroke-width: 2px; -webkit-text-stroke-color: white; font-size: 30px">LIST OF ALL QUESTIONS AND ANSWERS</span></h2>
+      <table class="table table-sm table-hover">
+        <thead>
+          <tr>
+            <td>Question</td>
+            <td>Answer</td>
+            <td>Category</td>
+            <td>When Asked</td>
+          </tr>
+        </thead>
+        <tbody *ngFor="let question of allQuestions">
+          <tr>
+            <td>{{question.question_}}</td>
+            <td>{{question.answer}}</td>
+            <td>{{question.categoryTitle}}</td>
+            <td>{{question.date}}</td>
+            <button (click)="edit(question.id)"><i class="fas fa-pencil-alt"></i></button>
+            <button (click)="delete(question.id)"><i class="far fa-trash-alt"></i></button>
+          </tr>
+        </tbody>
+      </table>
+
+      <button class="btn btn-primary" (click)="addNewQuestion()"><i class="fas fa-plus"></i>Add new question</button>
+    </div>
+
+
+    <div *ngIf="showForm">
+      <form [formGroup]="angularForm" novalidate (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Question:</label>
+          <input class="form-control" formControlName="question" type="text">
+        </div>
+        <div *ngIf="angularForm.controls['question'].invalid && (angularForm.controls['question'].dirty || angularForm.controls['question'].touched)" class="alert alert-danger">
+          <div *ngIf="angularForm.controls['question'].errors.required">
+            Question is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Answer:</label>
+          <input class="form-control" formControlName="answer" type="text">
+        </div>
+        <div *ngIf="angularForm.controls['answer'].invalid && (angularForm.controls['answer'].dirty || angularForm.controls['answer'].touched)" class="alert alert-danger">
+          <div *ngIf="angularForm.controls['answer'].errors.required">
+            Answer is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Category:</label>
+          <input class="form-control" formControlName="categoryTitle" type="text">
+        </div>
+        <div *ngIf="angularForm.controls['categoryTitle'].invalid && (angularForm.controls['categoryTitle'].dirty || angularForm.controls['categoryTitle'].touched)" class="alert alert-danger">
+          <div *ngIf="angularForm.controls['categoryTitle'].errors.required">
+            Category name is required.
+          </div>
+        </div>
+        <button type="submit" *ngIf="formStatus=='Register'" [disabled]="!angularForm.valid" class="btn btn-primary">Registrer</button>
+        <button type="submit" *ngIf="formStatus=='Edit'" [disabled]="!angularForm.valid" class="btn btn-primary">Edit</button>
+        <button class="btn btn-primary" (click)="backToList()"><i class="fas fa-arrow-left"></i>Back to List</button>
+
+      </form>
+    </div>
+
+    <div class="col-md-10" *ngIf="showNotAnsweredQuestions">
+      <h2 class="jumbotron col-md-10 top" style="background-color:indianred; text-align: center"><span style="color: transparent; -webkit-text-stroke-width: 2px; -webkit-text-stroke-color: white; font-size: 30px" >QUESTIONS TO ANSWER</span></h2>
+      <table class="table table-sm table-hover">
+        <thead>
+          <tr>
+            <td>Question</td>
+            <td>Answer</td>
+            <td>Customer Information</td>
+            <td>Category</td>
+          </tr>
+        </thead>
+        <tbody *ngFor="let question of allNotAnswered">
+          <tr>
+            <td>{{question.question_}}</td>
+            <td>{{question.answer}}</td>
+            <td>Name: {{question.customerName}}<br /> Surname: {{question.customerEmail}}<br /> Email: {{question.customerSurname}}</td>
+            <td>{{question.categoryTitle}}</td>
+            <button (click)="edit(question.id)"><i class="fas fa-pencil-alt"></i></button>
+            <button (click)="delete(question.id)"><i class="far fa-trash-alt"></i></button>
+          </tr>
+        </tbody>
+      </table>
+    </div>

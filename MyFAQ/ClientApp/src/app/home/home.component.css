@@ -1,0 +1,93 @@
+#font{
+  font:#ffffff;
+}
+
+#header {
+  margin-top: 20%;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.glyphicon {
+  font-size: 30px;
+  cursor: pointer;
+  color: #6b7a8c;
+}
+
+#ask {
+  color: white;
+  border-radius: 6px;
+  background-color: #28364A;
+  font-size: 1em;
+  margin-left: 10%;
+}
+
+.text {
+  font-size: 15px;
+  font-size-adjust: 0.58;
+}
+
+@media (min-width: 768px) {
+  #header {
+    margin-top: 1%;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  .text{
+    font-size: 25px;
+    font-size-adjust: 0.58;
+  }
+  .font{
+    font-size: 30px;
+  }
+  #labels {
+    border: 6px solid #6b7a8c;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 50%;
+    margin-right: 50%;
+  }
+
+  #questions {
+    border: 6px solid #6b7a8c;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 50%;
+    margin-right: 50%;
+    text-align: left;
+    padding-top: 1%;
+    margin-top: 1%;
+    font-size: 30px;
+  }
+
+  #ask {
+    color: white;
+    border-radius: 6px;
+    background-color: #28364A;
+    font-size: 1.5em;
+  }
+}
+
+#labels {
+  border: 6px solid #6b7a8c;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#questions {
+  border: 6px solid #6b7a8c;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  padding-top: 1%;
+  margin-top: 1%;
+}
+.font{
+  font-size: 20px;
+}
+
+
+

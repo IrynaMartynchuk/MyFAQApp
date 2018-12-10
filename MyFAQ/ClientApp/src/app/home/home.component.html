@@ -1,0 +1,70 @@
+<div id="container">
+  <div id="header" class="jumbotron" style="text-align: center; background-color:#6b7a8c">
+    <h2 style=" font-size:110px; font-weight: bold">
+      <span style="color: transparent;
+    -webkit-text-stroke-width: 5px;
+    -webkit-text-stroke-color: white
+">FAQ</span>
+    </h2>
+  </div>
+
+  <div class="col-md-6" style="text-align: center;">
+    <div *ngFor="let node of allCategories">
+      <div>
+        <p class="col-md-10 text" id="labels" (click)="show(node)">{{node.title}}</p>
+        <ng-container *ngIf="node.showChildren">
+          <div id="questions" class="col-md-10" *ngFor="let questions of node.questions">
+            {{questions.thumbup}}<i class="glyphicon glyphicon-thumbs-up" (click)="thumbup(questions.id)"></i>{{questions.thumbdown}}<i class="glyphicon glyphicon-thumbs-down" (click)="thumbdown(questions.id)"></i>
+            <p class="text"><span style="font-weight: bold">Question: </span> {{questions.question}} </p>
+            <p class="text"><span style="font-weight: bold">Answer: </span>{{questions.answer}}</p>
+          </div>
+
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <p class="col-md-10 text" style="text-align:center">If you did not find what you were looking for, you can send us your question, just click the button "Ask your question" and fill in the form that you will see.</p>
+  <div class=" col-md-10" style="margin-top: 20px">
+    <button id="ask" class="btn" (click)="showForm()">Ask Your Question</button>
+  </div>
+
+
+  <div class="col-md-10" *ngIf="showQuestionForm" style="margin-top: 20px">
+    <form [formGroup]="questionForm" novalidate (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Question:</label>
+        <input class="form-control" formControlName="question" type="text">
+      </div>
+      <div class="alert-danger" [hidden]="questionForm.controls.question.valid || (questionForm.controls.question.pristine && !submitted)">
+          Question is required, minimum 3 words.
+      </div>
+
+      <div class="form-group">
+        <label>Your Name:</label>
+        <input class="form-control" formControlName="customerName" type="text">
+      </div>
+      <div class="alert-danger" [hidden]="questionForm.controls.customerName.valid || (questionForm.controls.customerName.pristine && !submitted)">
+        Name is required, only letters are allowed.
+      </div>
+
+      <div class="form-group">
+        <label>Your Surname:</label>
+        <input class="form-control" formControlName="customerSurname" type="text">
+      </div>
+      <div class="alert-danger" [hidden]="questionForm.controls.customerSurname.valid || (questionForm.controls.customerSurname.pristine && !submitted)"> 
+        Surname is required, only letters are allowed.
+      </div>
+
+      <div class="form-group">
+        <label>Your Email:</label>
+        <input class="form-control" formControlName="customerEmail" type="text">
+      </div>
+      <div class="alert-danger" [hidden]="questionForm.controls.customerEmail.valid || (questionForm.controls.customerEmail.pristine && !submitted)">
+        Email is required. The email format should be <i>yogeshdotnet@gmail.com</i>
+      </div>
+
+      <button type="submit" [disabled]="!questionForm.valid" class="btn btn-primary" style="background-color: #28364A;">Send your Question</button>
+    </form>
+  </div>
+</div>
